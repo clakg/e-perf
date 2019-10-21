@@ -28,7 +28,7 @@ class Movement:
                     self.detectFunction()
                 # En enregistrer l'état
                 previousstate = 1
-            # Si le capteur est s'est stabilisé
+            # Si le capteur s'est stabilisé
             elif currentstate == 0 and previousstate == 1:
                 print("    Ca ne coule plus !")
                 redLed.asyncOn()
@@ -50,22 +50,12 @@ class Movement:
 GPIO_initialize()
 
 blueLed = Led(24)
-redLed = Led(18)
-
+# redLed = Led(18)
 
 def detectMovement():
     blueLed.asyncOn()
-
-movementSensor = Movement(17, detectFunction=detectMovement)
+    
+"""movementSensor = Movement(17, detectFunction=detectMovement)
 thread = movementSensor.startDetection()
-thread.join()
+thread.join()"""
 
-
-"""
-si movement == true -> blueLed(24):asyncOn()
-                     + redLed(18): asyncOff()
-
-si movement == false -> blueLed(24):asyncOn()
-                     + redLed(18): asyncOn()
-                     
-"""

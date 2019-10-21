@@ -49,7 +49,7 @@ class Led:
 Led.init()
 redLed=Led(18)
 blueLed=Led(24)
-redThread = redLed.asyncBlink(10, 0.25)
+redThread = redLed.asyncBlink(2, 0.25)
 blueThread = blueLed.asyncOn()
 
 '''redLed.on()

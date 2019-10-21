@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send, emit
 from threading import Thread
-#from GPIO import GPIO_initialize
+from GPIO import GPIO_initialize
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -16,9 +16,10 @@ def index():
 def movementDetected():
     socketio.emit('alert', 'Aucun probleme d\'ecoulement', Broadcast=True)
 
-#GPIO_initialize()
+GPIO_initialize()
 movementSensor = Movement(17, detectFunction=movementDetected)
 movementSensor.startDetection()
+
 
 @app.route('/stop_detector')
 def stopDetector():

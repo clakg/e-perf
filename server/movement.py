@@ -12,6 +12,7 @@ class Movement:
         self.running = False
         self.detectFunction = detectFunction
         self.readyFunction = readyFunction
+        countingStart = False
 
     def detect(self):
         currentstate = 0
@@ -22,6 +23,7 @@ class Movement:
         while self.running:
             # Lecture du capteur
             currentstate = GPIO.input(self.numGPIO)
+            countingStart = True
             # Si le capteur est déclenché
             if currentstate == 1 and previousstate == 0:
                 print("    Ca coule bien !")
@@ -47,26 +49,6 @@ class Movement:
         thread = Thread(target=self.detect)
         thread.start()
         return thread
-
+    
     def stopDetection(self):
         self.running = False
-
-
-       
-
-
-"""
-GPIO_initialize() 
-
-blueLed = Led(24) 
-redLed = Led(18)    
-
-def detectMovement():
-    blueLed.asyncOn()
-    
-movementSensor = Movement(17, detectFunction=detectMovement)
-thread = movementSensor.startDetection()
-thread.join()
-
-"""
-

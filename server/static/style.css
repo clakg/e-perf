@@ -1,40 +1,36 @@
-body {
-    background-color: lightseagreen;
-}
-
 * { 
     font-family:tahoma;
     font-size:12px;
     padding:0px;
     margin:0px;
 }
-p { 
-    line-height:18px; 
+
+body {
+    background-image: url('../static/image/perfusion.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
 }
-div { 
-    width:500px; 
-    margin-left:auto; 
-    margin-right:auto;
+
+p {
+    line-height: 18px;
 }
+
 #content { 
     padding:5px; 
     background:#ddd; 
     border-radius:5px;
     overflow-y: scroll; 
     border:1px solid #CCC;
-    margin-top:10px; 
-    height: 160px; 
+    margin: 5%; 
+    height: 400px;
+    opacity: 0.8;
 }
-#input { 
-    border-radius:2px; 
-    border:1px solid #ccc;
-    margin-top:10px; 
-    padding:5px; 
-    width:400px;
-}
+
 #status { 
-    width:88px;
-    display:block;
-    float:left;
-    margin-top:15px;
+    width: 90px;
+    display: block;
+    float: right;
+    margin-right: 5%;
  }

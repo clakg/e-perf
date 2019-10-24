@@ -13,7 +13,6 @@ class Movement:
         self.detectFunction = detectFunction
         self.readyFunction = readyFunction
         
-
     def detect(self):
         currentstate = 0
         previousstate = 0

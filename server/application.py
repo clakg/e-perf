@@ -7,43 +7,44 @@ from GPIO import GPIO_initialize
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-from movement import Movement
 
+from movement import Movement
+i=0
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 def movementDetected():
-    socketio.emit('alert', 'Aucun probleme d\'ecoulement', Broadcast=True)
+    global i
+    #socketio.emit('alert', 'Aucun probleme d\'ecoulement', Broadcast=True)
+    i=0
 
 def movementNotDetected():
     print("Mouvement non détecté!")
-    #socketio.emit('alert', 'Ecoulement non detecté!', Broadcast=True)
+    socketio.emit('alert', 'Ecoulement non detecté!', Broadcast=True)
 
-def count(self):
+def count():
+    global i
     i=0
-    print('count se lance')
     while True:
         i=i+1
-        time.sleep(6)
+        time.sleep(1)
         print(i)
-        if movementDetected():
+        if i==10:
+            movementNotDetected()
             i=0
-        elif i==10:
-            return movementNotDetected()
 
-def startCounting(self):
-    thread = Thread(target = self.count)
+def startCounting():
+    thread = Thread(target = count)
     thread.start()
     return thread
 
 GPIO_initialize()
 movementSensor = Movement(17, detectFunction=movementDetected)
-c = startCounting()
 
-c.join()
-movementSensor.join()
+
+startCounting()
 movementSensor.startDetection()
 
 @app.route('/stop_detector')
@@ -53,5 +54,3 @@ def stopDetector():
 @app.route('/start_detector')
 def startDetector():
     movementSensor.startDetection()
-
-    
